@@ -21,7 +21,6 @@ app.use(session({
   saveUninitialized: false,
   // You can configure other options as needed
 }));
-
 // Define routes
 // Example:
 // const userRoutes = require('./routes/userRoutes');
