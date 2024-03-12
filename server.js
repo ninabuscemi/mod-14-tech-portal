@@ -1,28 +1,20 @@
-// Import required modules
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const sequelize = require('./config/config');
 
-// Import Sequelize instance from config.js
-const sequelize = require('./config');
-
-// Create an instance of Express app
 const app = express();
 
-// Set up middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configure express-session middleware
 app.use(session({
-  secret: 'your_secret_key', // Change this to a random string
+  secret: 'your_secret_key',
   resave: false,
-  saveUninitialized: false,
-  // You can configure other options as needed
+  saveUninitialized: false
 }));
 
-// Set up the view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
@@ -30,11 +22,14 @@ app.set('view engine', 'handlebars');
 
 // Home route
 app.get('/', (req, res) => {
-  // Render the home page
+  // Render the home page with list of posts
   res.render('home', { /* Data to pass to the view */ });
 });
 
-// Authentication routes
+// Individual post route
+app.get('/posts/:id', (req, res) => {
+  // Render the individual post page
+});
 
 // Signup route
 app.post('/signup', (req, res) => {
@@ -51,24 +46,11 @@ app.get('/logout', (req, res) => {
   // Handle user logout
 });
 
-// Post routes
-
-// Create a new post route
-app.post('/posts', (req, res) => {
-  // Handle creation of a new post
-});
-
-// View a specific post route
-app.get('/posts/:id', (req, res) => {
-  // Handle viewing a specific post
-});
-
 // Dashboard route
 app.get('/dashboard', (req, res) => {
   // Render the dashboard
 });
 
-// Start the server after syncing with the database
 sequelize.sync({ force: false }).then(() => {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
