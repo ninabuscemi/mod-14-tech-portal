@@ -9,11 +9,13 @@
 <body>
     <header>
         <nav>
-            <ul>
+            <ul> <!-- Navigation !-->
                 <li><a href="/">Home</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/login">Login</a></li>
-                <!-- You can include more navigation links here -->
+                {{#if isAuthenticated}}
+                <li><a href="/logout">Logout</a></li>
+                {{/if}}
             </ul>
         </nav>
     </header>

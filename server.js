@@ -21,20 +21,51 @@ app.use(session({
   saveUninitialized: false,
   // You can configure other options as needed
 }));
-// Define routes
-// Example:
-// const userRoutes = require('./routes/userRoutes');
-// const postRoutes = require('./routes/postRoutes');
-// app.use('/api/users', userRoutes);
-// app.use('/api/posts', postRoutes);
 
 // Set up the view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-// Define a basic route for the homepage
+// Define routes
+
+// Home route
 app.get('/', (req, res) => {
+  // Render the home page
   res.render('home', { /* Data to pass to the view */ });
+});
+
+// Authentication routes
+
+// Signup route
+app.post('/signup', (req, res) => {
+  // Handle user signup
+});
+
+// Login route
+app.post('/login', (req, res) => {
+  // Handle user login
+});
+
+// Logout route
+app.get('/logout', (req, res) => {
+  // Handle user logout
+});
+
+// Post routes
+
+// Create a new post route
+app.post('/posts', (req, res) => {
+  // Handle creation of a new post
+});
+
+// View a specific post route
+app.get('/posts/:id', (req, res) => {
+  // Handle viewing a specific post
+});
+
+// Dashboard route
+app.get('/dashboard', (req, res) => {
+  // Render the dashboard
 });
 
 // Start the server after syncing with the database
