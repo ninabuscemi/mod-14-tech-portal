@@ -18,6 +18,9 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
+// Import models
+const { User, Post, Comment } = require('./models');
+
 // Import controllers
 const userController = require('./controllers/userController');
 const postController = require('./controllers/postController');
