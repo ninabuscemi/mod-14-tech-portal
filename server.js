@@ -18,38 +18,48 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
+// Import controllers
+const userController = require('./controllers/userController');
+const postController = require('./controllers/postController');
+const commentController = require('./controllers/commentController');
+
 // Define routes
 
 // Home route
-app.get('/', (req, res) => {
-  // Render the home page with list of posts
-  res.render('home', { /* Data to pass to the view */ });
-});
+app.get('/', postController.getAllPosts);
 
 // Individual post route
-app.get('/posts/:id', (req, res) => {
-  // Render the individual post page
-});
+app.get('/posts/:id', postController.getPostById);
 
 // Signup route
-app.post('/signup', (req, res) => {
-  // Handle user signup
-});
+app.post('/signup', userController.signup);
 
 // Login route
-app.post('/login', (req, res) => {
-  // Handle user login
-});
+app.post('/login', userController.login);
 
 // Logout route
-app.get('/logout', (req, res) => {
-  // Handle user logout
-});
+app.get('/logout', userController.logout);
 
 // Dashboard route
-app.get('/dashboard', (req, res) => {
-  // Render the dashboard
-});
+app.get('/dashboard', userController.dashboard);
+
+// Create post route
+app.post('/posts', postController.createPost);
+
+// Update post route
+app.put('/posts/:id', postController.updatePost);
+
+// Delete post route
+app.delete('/posts/:id', postController.deletePost);
+
+// Create comment route
+app.post('/comments', commentController.createComment);
+
+// Update comment route
+app.put('/comments/:id', commentController.updateComment);
+
+// Delete comment route
+app.delete('/comments/:id', commentController.deleteComment);
 
 sequelize.sync({ force: false }).then(() => {
   const PORT = process.env.PORT || 3000;
