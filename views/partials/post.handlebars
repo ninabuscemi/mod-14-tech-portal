@@ -1,0 +1,38 @@
+<article class="post container">
+    <div class="title card-head">
+        <a href="/post/{{id}}" class="card-head">{{title}}</a>
+    </div>
+    <div class="body">
+        {{post_text}}
+    </div>
+    <div class="meta">
+        <strong>Posted By {{user.username}} on {{format_date created_at}}</strong>
+    </div>
+
+    {{#if comments}}
+          <div class="comment-box">
+            <div class="comment-box-header"><h3>Comments</h3></div>
+              {{#each comments as |comment|}}
+              <div class="comment-box-item"><h5>{{user.user_name}}</h5></div>
+              <div class="comment-item">{{comment.comment_text}}</div>
+              {{/each}}
+          </div>
+          {{/if}}
+          {{#if logged_in}}
+          <form class="comment-form">
+            <div class="comments">
+              <section class="comment">
+                <div class="text">
+                  <textarea id="comment-txt" class="comment-text"></textarea>
+                </div>
+              </section>
+            </div>
+            <div class="comment-btn-holder">
+              <button type="submit">Add Comment</button>
+            </div>
+          </form>
+          {{/if}}
+
+</article>
+
+<script src="/js/comment.js"></script>

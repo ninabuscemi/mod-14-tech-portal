@@ -9,28 +9,33 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/login">Login</a></li>
-                {{#if isAuthenticated}}
-                <li><a href="/logout">Logout</a></li>
+    <div class="wrapper">
+        <header>
+            <h1>
+                <p>Talkin' Tech</p>
+            </h1>
+
+            <nav>
+                {{#if loggedIn}}
+                <a href="/" class="homepage">Home</a>
+                <a href="/dashboard">Dashboard</a>
+                <button id="logout" class="btn">Log Out</button>
+                {{else}}
+                <a href="/" class="homepage">Home</a>
+                <a href="/login" class="homepage">Login</a>
                 {{/if}}
-            </ul>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <main>
-        {{{body}}}
-    </main>
+        <main>
+            {{{ body }}}
+        </main>
+    </div>
 
-    <footer>
-        <!-- Footer content -->
-    </footer>
-
-    <script src="/script.js"></script>
+   {{#if loggedIn}}
+    <script src="/public/js/script.js"></script>
+    {{/if}}
+    
 </body>
 
 </html>
